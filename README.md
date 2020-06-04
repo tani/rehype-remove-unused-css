@@ -36,11 +36,11 @@ const report = require("vfile-report")
 const unified = require("unified")
 const rehype = require("rehype-parse")
 const stringify = require("rehype-stringify")
-const uncss = require("rehype-uncss")
+const removeUnusedCss = require("rehype-remove-unused-css")
 
 unified()
     .use(rehype)
-    .use(uncss)
+    .use(removeUnusedCss)
     .use(stringify)
     .processSync(vfile.readSync("example.html"), (err, file) => {
         console.error(report(err || file))
@@ -67,7 +67,7 @@ Now, running `node example` yields:
 
 ## API
 
-### `rehype().use(uncss[, options])`
+### `rehype().use(removeUnusedCss[, options])`
 
 Remove unused stylesheet.
 
@@ -75,7 +75,7 @@ Remove unused stylesheet.
 
 ### Security
 
-Use of rehype-template should be safe to use as JSDOM should be safe to use. When in doubt, use rehype-sanitize.
+Use of rehype-remove-unused-css should be safe to use as JSDOM should be safe to use. When in doubt, use rehype-sanitize.
 
 ### License
 
