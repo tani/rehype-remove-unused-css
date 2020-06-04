@@ -1,10 +1,10 @@
-# Rehype Uncss
+# Rehype remove unused css
 
 Rehype plugin to remove unused stylesheet with uncss
 
 ## Installation
 
-    npm install rehype-uncss
+    npm install rehype-remove-unused-css
 
 ## Usage
 

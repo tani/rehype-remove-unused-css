@@ -1,7 +1,7 @@
 {
-  "name": "rehype-uncss",
-  "version": "0.2.0",
-  "description": "Rehype plugin remove unused stylesheet",
+  "name": "rehype-remove-unused-css",
+  "version": "0.1.0",
+  "description": "Rehype plugin to remove unused stylesheet with uncss",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage"
