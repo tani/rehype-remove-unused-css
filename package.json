@@ -1,0 +1,33 @@
+{
+  "name": "rehype-uncss",
+  "version": "0.1.0",
+  "description": "Rehype plugin remove unused stylesheet",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "rehype-plugin",
+    "unified",
+    "css",
+    "html",
+    "purify",
+    "minify"
+  ],
+  "author": "TANIGUCHI Masaya",
+  "license": "MIT",
+  "dependencies": {
+    "hast-util-to-html": "^7.1.1",
+    "uncss": "^0.17.3",
+    "unist-util-select": "^3.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "rehype-parse": "^6.0.2",
+    "rehype-stringify": "^7.0.0",
+    "unified": "^9.0.0"
+  }
+}
