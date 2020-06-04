@@ -36,10 +36,10 @@ module.exports = function purify(options) {
                 node.children = [{
                     value,
                     type: "text",
-                    position: {
+                    position: node.children.every(c=>c.position) ? {
                         start: node.children[0].position.start,
                         end: node.children[node.children.length - 1].position.end
-                    }
+                    } : undefined
                 }]
                 resolve()
             })
