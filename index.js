@@ -28,14 +28,12 @@ const toString = require("hast-util-to-string")
 const fromString = require("hast-util-from-string")
 const { promisify } = require("util")
 
-module.exports = function purify(options) {
-    return async (tree) => {
-        const html = toHtml(tree)
-        const nodes = selectAll("style", tree)
-        await Promise.all(nodes.map(async (node)=>{
-            const raw = toString(node)
-            const css = await promisify(uncss)(html, {...options, raw})
-            fromString(node, css)
-        }))
-    }
+module.exports = (options) => async (tree) => {
+    const html = toHtml(tree)
+    const nodes = selectAll("style", tree)
+    await Promise.all(nodes.map(async (node)=>{
+        const raw = toString(node)
+        const css = await promisify(uncss)(html, {...options, raw})
+        fromString(node, css)
+    }))
 }
