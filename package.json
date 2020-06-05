@@ -20,9 +20,11 @@
   "author": "TANIGUCHI Masaya",
   "license": "MIT",
   "dependencies": {
+    "hast-util-from-string": "^1.0.3",
+    "hast-util-select": "^4.0.0",
     "hast-util-to-html": "^7.1.1",
-    "uncss": "^0.17.3",
-    "unist-util-select": "^3.0.1"
+    "hast-util-to-string": "^1.0.3",
+    "uncss": "^0.17.3"
   },
   "devDependencies": {
     "jest": "^26.0.1",

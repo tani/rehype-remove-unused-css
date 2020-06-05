@@ -23,26 +23,19 @@
 
 const uncss = require("uncss")
 const toHtml = require("hast-util-to-html")
-const { selectAll } = require("unist-util-select")
+const { selectAll } = require("hast-util-select")
+const toString = require("hast-util-to-string")
+const fromString = require("hast-util-from-string")
+const { promisify } = require("util")
 
 module.exports = function purify(options) {
     return async (tree) => {
         const html = toHtml(tree)
-        const nodes = selectAll("[tagName=style]", tree)
-        await Promise.all(nodes.map((node)=>new Promise((resolve, reject)=>{
-            const raw = node.children.map(c=>c.value).join()
-            uncss(html, {...options, raw}, (err, value)=>{
-                if(err) reject(err)
-                node.children = [{
-                    value,
-                    type: "text",
-                    position: node.children.every(c=>c.position) ? {
-                        start: node.children[0].position.start,
-                        end: node.children[node.children.length - 1].position.end
-                    } : undefined
-                }]
-                resolve()
-            })
-        })))
+        const nodes = selectAll("style", tree)
+        await Promise.all(nodes.map(async (node)=>{
+            const raw = toString(node)
+            const css = await promisify(uncss)(html, {...options, raw})
+            fromString(node, css)
+        }))
     }
 }
